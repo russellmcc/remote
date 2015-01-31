@@ -1,35 +1,42 @@
-_ = require('bower_components/lodash/lodash')
+"use strict";
+var _ = require('./bower_components/lodash/lodash');
 
-module.exports = {}
+module.exports = function(options) {
+  options = _.defaults(options, {
+    verb: 'GET'
+  });
 
-module.exports.xhr = function(options) {
-  options = _.default()
-  // Return a new promise.
   return new Promise(function(resolve, reject) {
-    // Do the usual XHR stuff
     var req = new XMLHttpRequest();
-    req.open('GET', url);
+    req.open(options.verb, options.url);
 
     req.onload = function() {
-      // This is called even on 404 etc
-      // so check the status
-      if (req.status == 200) {
-        // Resolve the promise with the response text
+      var isSuccess = function (status) {
+        return status >= 200 && status < 300;
+      };
+      if (isSuccess(req.status)) {
         resolve(req.response);
       }
       else {
-        // Otherwise reject with the status text
-        // which will hopefully be a meaningful error
-        reject(Error(req.statusText));
+        reject(new Error(req.statusText));
       }
     };
 
-    // Handle network errors
     req.onerror = function() {
-      reject(Error("Network Error"));
+      reject(new Error("Protocol Error"));
     };
 
-    // Make the request
-    req.send();
+    if (options.data && typeof options.data === 'object') {
+      var data;
+      data = new FormData();
+      for (var key in options.data) {
+        data.append(key, options.data[key]);
+      }
+      req.send(data);
+    } else if (typeof options.data === 'string') {
+      req.send(options.data);
+    } else {
+      req.send();
+    }
   });
-}
+};
