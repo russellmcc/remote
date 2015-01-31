@@ -1,0 +1,28 @@
+functionality:
+
+ACTIONS
+apple tv - turn on apple tv, turn on tv, set tv and reciever to proper inputs, turn off light
+xbox - turn on tv, set tv and reciever to proper inputs, turn off light
+watch tv - turn on tv, turn off light
+play record - reciever to proper input
+
+BUTTONS
++ volume
+- volume
+light on
+light off
+tv off - turn off tv
++ channel
+- channel
+
+
+
+questions:
+
+can the tv be definitely turned on if it is in indeterminate state?
+
+
+tasks:
+
+local storage for user names and pwds
+check for expired tokens and generate if necessary
