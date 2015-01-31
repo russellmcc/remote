@@ -26,3 +26,29 @@ tasks:
 
 local storage for user names and pwds
 check for expired tokens and generate if necessary
+
+how to connect to hue:
+
+hit: https://www.meethue.com/api/nupnp
+
+parse the json for the value of "internalipaddress" of the first (and in our case only) bridge, at time of writing it is "10.0.1.12"
+
+you can go to this url to test things:
+http://10.0.1.12/debug/clip.html
+
+intro info is here:
+http://www.developers.meethue.com/documentation/getting-started
+
+we are using the id newdeveloper, which is already set up on our bridge
+
+the form to turn off the light is as follows:
+
+IP_OF_BRIDGE/api/newdeveloper/lights/ID_OF_LIGHT/state
+
+PUT request with value {"on":false}  <-- this is in the json currently
+
+to get the name of the lights use a get request to:
+
+IP_OF_BRIDGE/api/newdeveloper/lights
+
+look for "name", id is the second to top level division
