@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prepublish" : "bower install; browserify -o bundle.js remote.js"
+    "prepublish" : "bower install; browserify src/remote.js -o dist/bundle.js"
   },
   "license": "All Rights Reserved",
   "private": true,

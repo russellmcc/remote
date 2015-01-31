@@ -1,5 +1,5 @@
 "use strict";
-var _ = require('./bower_components/lodash/lodash');
+var _ = require('../bower_components/lodash/lodash');
 
 module.exports = function(options) {
   options = _.defaults(options, {
