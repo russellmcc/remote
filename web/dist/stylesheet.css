@@ -1,0 +1,69 @@
+html {
+height: 100%;
+padding: 0;
+margin: 0;
+}
+body {
+    background-color: magenta;
+    height: 100%;
+}
+
+#tvbutton {
+	background: url("/icon_svgs/tv.svg") no-repeat center;
+}
+
+#chupbutton {
+	background: url("/icon_svgs/ch+.svg") no-repeat center;
+}
+
+#chdownbutton {
+	background: url("/icon_svgs/ch-.svg") no-repeat center;
+}
+
+#powerbutton {
+	background: url("/icon_svgs/power.svg") no-repeat center;
+}
+
+#xboxbutton {
+	background: url("/icon_svgs/xbox.svg") no-repeat center;
+}
+
+#turntablebutton  {
+	background: url("/icon_svgs/turntable.svg") no-repeat center;
+}
+
+#appletvbutton {
+	background: url("/icon_svgs/appletv.svg") no-repeat center;
+}
+
+#volupbutton  {
+	background: url("/icon_svgs/vol+.svg") no-repeat center;
+}
+
+#voldownbutton {
+	background: url("/icon_svgs/vol-.svg") no-repeat center;
+}
+
+
+
+.row {
+	width:100%;
+	height: 33.3333333%;
+}
+
+.col {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.subrow {
+	width:100%;
+	height: 50%;
+}
+
+.subcol {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
