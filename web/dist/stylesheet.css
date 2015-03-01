@@ -4,65 +4,89 @@ padding: 0;
 margin: 0;
 }
 body {
-    background-color: magenta;
+    background-color: #FB002A;
     height: 100%;
 }
 
-#tvbutton {
-	background: url("/icon_svgs/tv.svg") no-repeat center;
+/*#tvbutton {
+	content:url("/icon_svgs/tv.svg") no-repeat center;
 }
 
 #chupbutton {
-	background: url("/icon_svgs/ch+.svg") no-repeat center;
+	content:url("/icon_svgs/ch+.svg") no-repeat center;
 }
 
 #chdownbutton {
-	background: url("/icon_svgs/ch-.svg") no-repeat center;
+	content:url("/icon_svgs/ch-.svg") no-repeat center;
 }
 
 #powerbutton {
-	background: url("/icon_svgs/power.svg") no-repeat center;
+	content:url("/icon_svgs/power.svg") no-repeat center;
 }
 
 #xboxbutton {
-	background: url("/icon_svgs/xbox.svg") no-repeat center;
+	content:url("/icon_svgs/xbox.svg") no-repeat center;
 }
 
 #turntablebutton  {
-	background: url("/icon_svgs/turntable.svg") no-repeat center;
+	content:url("/icon_svgs/turntable.svg") no-repeat center;
 }
 
 #appletvbutton {
-	background: url("/icon_svgs/appletv.svg") no-repeat center;
+	content:url("/icon_svgs/appletv.svg") no-repeat center;
 }
 
 #volupbutton  {
-	background: url("/icon_svgs/vol+.svg") no-repeat center;
+	content:url("/icon_svgs/vol+.svg") no-repeat center;
 }
 
 #voldownbutton {
-	background: url("/icon_svgs/vol-.svg") no-repeat center;
+	content:url("/icon_svgs/vol-.svg") no-repeat center;
+}*/
+
+.icon_svg {
+	fill: red;
 }
 
-
-
 .row {
-	width:100%;
+	float:center;
 	height: 33.3333333%;
 }
 
+.col_holder_left {
+	float: left;
+	height: 99%;
+	width: 50%;
+}
+
+.col_holder_right {
+	float: right;
+	height: 99%;
+	width: 50%;
+}
+
 .col {
+    margin: 0 auto;
+    display: table;
+	float: center;
+	height: 100%;
+}
+
+.subrow {
+	float:center;
+	/*width:100%;*/
+	height: 50%;
+}
+
+.undercol {
+	display: inline;
 	float: left;
 	width: 50%;
 	height: 100%;
 }
 
-.subrow {
-	width:100%;
-	height: 50%;
-}
-
 .subcol {
+	display: inline-block;
 	float: left;
 	width: 50%;
 	height: 100%;
