@@ -5,6 +5,94 @@
 const uint16_t timer_period = 1895; //38khz
 const float duty_cycle = 0.5;
 
+int IRsignal[] = {
+
+// ON, OFF (in 10's of microseconds)
+
+	874, 432,
+
+	58, 50,
+
+	58, 158,
+
+	58, 52,
+
+	56, 54,
+
+	54, 54,
+
+	56, 50,
+
+	58, 52,
+
+	54, 54,
+
+	56, 160,
+
+	56, 54,
+
+	56, 162,
+
+	54, 160,
+
+	58, 158,
+
+	58, 162,
+
+	54, 162,
+
+	58, 50,
+
+	56, 54,
+
+	56, 160,
+
+	56, 160,
+
+	58, 52,
+
+	56, 52,
+
+	56, 52,
+
+	56, 162,
+
+	56, 50,
+
+	58, 162,
+
+	56, 50,
+
+	58, 52,
+
+	54, 162,
+
+	56, 160,
+
+	58, 160,
+
+	56, 54,
+
+	54, 164,
+
+	52, 3966,
+
+	874, 214,
+
+	58, 2736,
+
+	876, 214,
+
+	58, 2738,
+
+	874, 214,
+
+	58, 2736,
+
+	874, 214,
+
+	58, 0};
+
 // This routine runs only once upon reset
 void setup()
 {
@@ -44,11 +132,39 @@ void setup()
   }
 
 	// TIM enable counter
-	TIM_Cmd(TIM2, DISABLE);
+  SetFlashingIR(0);
 }
 
 void SetFlashingIR(bool value) {
-  TIM_Cmd(TIM2, value ? ENABLE : DISABLE);
+  if (value) {
+    TIM_SetCounter(TIM2, 0);
+    TIM_Cmd(TIM2, ENABLE);
+  } else {
+    TIM_Cmd(TIM2, DISABLE);
+    TIM_SetCounter(TIM2, timer_period - 1);
+  }
+}
+
+void delayABunchOfMicros(uint32_t micros) {
+  float micro_secs = micros;
+  while (micro_secs> 1000000) {
+    delay(1000);
+    micro_secs -= 1000000;
+  }
+  delayMicroseconds(micro_secs);
+}
+
+void sendCode() {
+  __disable_irq();  // this turns off any background interrupts
+
+  for (int i = 0; i < sizeof(IRsignal) / sizeof(IRsignal[0]); i += 2) {
+    SetFlashingIR(true);
+    delayABunchOfMicros(IRsignal[i]*10*1.02);
+    SetFlashingIR(false);
+    delayABunchOfMicros(IRsignal[i + 1]*10*1.02);
+  }
+
+  __enable_irq();  // this turns them back on
 }
 
 // This routine loops forever
@@ -59,6 +175,6 @@ void loop()
 
 int irControl(String command)
 {
-   SetFlashingIR(command == "on");
-   return 1;
+  sendCode();
+  return 1;
 }
