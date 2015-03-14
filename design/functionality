@@ -26,6 +26,8 @@ tasks:
 
 local storage for user names and pwds
 check for expired tokens and generate if necessary
+store TV state on server - ON/OFF, which input?
+choose colors
 
 how to connect to hue:
 

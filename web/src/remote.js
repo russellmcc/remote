@@ -22,9 +22,19 @@ window.addEventListener('load', function(){
   });*/
 });
 
-var global_fill = "#FB0036";
+// red and green
+//var global_fill = "#FB0036";
+//var background = "#ABC403";
+
+// dark teal and light yellow green
+//var global_fill = "#E5FA99";
+//var background = "#07393C";
+
+// dusty purple and neon yelloe green
+var global_fill = "#E6F14A";
+var background = "#634B66";
+
 var tc_global_fill = tinycolor(global_fill);
-var background = "#ABC403";
 var tc_background = tinycolor(background);
 
 document.body.style.background = background;
@@ -214,28 +224,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var sz = Math.min(gw/2.0,gh/3.0);
 
-    var y_os = 0.0; // (gh/3.0-sz)*0.5;
-    var x_os = 0.0; // (gw/2.0-sz)*0.5;
-    console.log(gh);
-    console.log(y_os);
+    var y_os = 0; //(gh/3.0-sz)*0.5;
+    var x_os = 0; //(gw/2.0-sz)*0.5;
+    var x_extra = (gw/2.0-sz)*0.25;
+    //console.log(gh);
+    //console.log(y_os);
     var row_ys = [y_os,gh/3.0+y_os,2.0*gh/3.0+y_os];
     var cols_xs = [x_os,gw/2.0+x_os];
     
     s_tv.attr({x:cols_xs[0], y:row_ys[0]});
-    s_upbutt.attr({x:cols_xs[0], y:(row_ys[0]+sz*0.5)});
-    s_downbutt.attr({x:(cols_xs[0]+sz*0.5), y:(row_ys[0]+sz*0.5)});
+    s_upbutt.attr({x:cols_xs[0]+x_extra, y:(row_ys[0]+sz*0.5)});
+    s_downbutt.attr({x:(cols_xs[0]+sz*0.5+x_extra), y:(row_ys[0]+sz*0.5)});
 
     s_xbox.attr({x:cols_xs[0], y:row_ys[1]});
 
     s_apple.attr({x:cols_xs[0], y:row_ys[2]});
 
 
-    s_power.attr({x:(cols_xs[1]+sz*0.5), y:row_ys[0]});
+    s_power.attr({x:(cols_xs[1]+sz*0.5+x_extra), y:row_ys[0]});
 
     s_turn.attr({x:cols_xs[1], y:row_ys[1]});
 
-    s_volup.attr({x:(cols_xs[1]+sz*0.5), y:row_ys[2]});
-    s_voldown.attr({x:(cols_xs[1]+sz*0.5), y:(row_ys[2]+sz*0.5)});
+    s_volup.attr({x:(cols_xs[1]+sz*0.5+x_extra), y:row_ys[2]});
+    s_voldown.attr({x:(cols_xs[1]+sz*0.5+x_extra), y:(row_ys[2]+sz*0.5)});
 
   };
 
