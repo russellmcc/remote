@@ -543,6 +543,46 @@ static const initializer_list<int> appletv_menu = {
 	892, 218,
 	56, 0};
 
+static const initializer_list<int> source_select = {
+	872, 432,
+	58, 50,
+	58, 162,
+	54, 52,
+	58, 50,
+	56, 54,
+	54, 52,
+	58, 52,
+	54, 54,
+	56, 160,
+	56, 54,
+	54, 162,
+	54, 162,
+	56, 160,
+	56, 162,
+	54, 160,
+	58, 52,
+	56, 54,
+	56, 160,
+	56, 52,
+	56, 160,
+	56, 54,
+	54, 52,
+	56, 162,
+	54, 52,
+	58, 160,
+	56, 52,
+	58, 160,
+	56, 50,
+	58, 160,
+	56, 160,
+	56, 54,
+	56, 160,
+	56, 3960,
+	872, 214,
+	58, 2724,
+	874, 214,
+	58, 0};
+
 struct MessageInfo {
 	String name;
 	initializer_list<int> message;
@@ -562,6 +602,7 @@ static const MessageInfo irMessages[] = {
     {"volume_up", volume_up},
     {"volume_down", volume_down},
     {"appletv_menu", appletv_menu},
+		{"source_select", source_select}
 };
 
 // This routine runs only once upon reset
