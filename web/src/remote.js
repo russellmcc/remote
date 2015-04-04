@@ -1,26 +1,8 @@
 "use strict";
-//var xhr = require('./xhr');
+var xhr = require('./xhr');
 var Snap = require('snapsvg');
 var tinycolor = require('tinycolor2');
 var Vec2 = require('vec2');
-
-window.addEventListener('load', function(){
-
-  /*var element = window.document.getElementById('clickhere');
-  element.addEventListener('mousedown', function(){
-    xhr({url: 'http://10.0.1.12/api/newdeveloper/lights/3'})
-      .then(JSON.parse.bind(JSON))
-      .then(function(resp){
-        xhr({
-          verb: 'PUT',
-          url: 'http://10.0.1.12/api/newdeveloper/lights/3/state',
-          data: JSON.stringify({
-            on: !resp.state.on
-          })
-        });
-      });
-  });*/
-});
 
 // red and green
 //var global_fill = "#FB0036";
@@ -120,6 +102,18 @@ function addSatOut(s) {
 };
 
 
+var sendRemoteCommand = function(c) {
+  xhr({
+    url: "https://api.spark.io/v1/devices/ourguy/ir",
+    verb: "POST",
+    urlencoded: true,
+    data: {
+      access_token: "9dd538b5c2002da10c39fc17cb3523ae5db3e852",
+      params: c
+    }
+  });
+};
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   console.log("loading and coloring svgs");
 
@@ -135,7 +129,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_tv.width = "50%";
   });
 
-  s_tv.click( function() { addHueIn(s_tv);} );
+  s_tv.click( function() {
+    sendRemoteCommand("tv");
+    addHueIn(s_tv);
+  });
 
   var s_upbutt = Snap();
   s_upbutt.attr({width:"25%", height:"16.666%"});
@@ -145,7 +142,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_upbutt.append(f);
   });
 
-  s_upbutt.click( function() { addHueIn(s_upbutt);} );
+  s_upbutt.click( function() {
+    sendRemoteCommand("channel_up");
+    addHueIn(s_upbutt);}
+  );
 
   var s_downbutt = Snap();
   s_downbutt.attr({width:"25%", height:"16.666%"});
@@ -155,7 +155,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_downbutt.append(f);
   });
 
-  s_downbutt.click( function() { addHueIn(s_downbutt);} );
+  s_downbutt.click(function() {
+    sendRemoteCommand("channel_down");
+    addHueIn(s_downbutt);
+  });
 
   var s_power = Snap();
   s_power.attr({width:"25%", height:"16.666%"});
@@ -165,7 +168,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_power.append(f);
   });
 
-  s_power.click( function() { addHueIn(s_power);} );
+  s_power.click(function() {
+    sendRemoteCommand("tv_power");
+    addHueIn(s_power);
+  });
 
   var s_xbox = Snap();
   s_xbox.attr({width:"50%", height:"33.333%"});
@@ -175,7 +181,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_xbox.append(f);
   });
 
-  s_xbox.click( function() { addHueIn(s_xbox);} );
+  s_xbox.click(function() {
+    sendRemoteCommand("xbox");
+    addHueIn(s_xbox);
+  });
 
   var s_turn = Snap();
   s_turn.attr({width:"50%", height:"33.333%"});
@@ -185,7 +194,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_turn.append(f);
   });
 
-  s_turn.click( function() { addHueIn(s_turn);} );
+  s_turn.click(function() {
+     sendRemoteCommand("turntable");
+     addHueIn(s_turn);
+  });
 
   var s_apple = Snap();
   s_apple.attr({width:"50%", height:"33.333%"});
@@ -195,7 +207,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_apple.append(f);
   });
 
-  s_apple.click( function() { addHueIn(s_apple);} );
+  s_apple.click(function() {
+    sendRemoteCommand("appletv");
+    addHueIn(s_apple);
+  });
 
   var s_volup = Snap();
   s_volup.attr({width:"25%", height:"16.666%"});
@@ -205,7 +220,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_volup.append(f);
   });
 
-  s_volup.click( function() { addHueIn(s_volup);} );
+  s_volup.click(function() {
+    sendRemoteCommand("volume_up");
+    addHueIn(s_volup);
+  });
 
   var s_voldown = Snap();
   s_voldown.attr({width:"25%", height:"16.666%"});
@@ -215,7 +233,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     s_voldown.append(f);
   });
 
-  s_voldown.click( function() { addHueIn(s_voldown);} );
+  s_voldown.click(function() {
+    sendRemoteCommand("volume_down");
+    addHueIn(s_voldown);
+  });
 
   var layout_svgs = function() {
     console.log("laying out svgs");
