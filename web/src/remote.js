@@ -348,6 +348,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var gw = document.body.clientWidth;
     var gh = document.body.clientHeight;
 
+    var div = document.getElementById('rotator');
+
+    if (gw > gh) {
+      // we should rotate!
+      document.body.style.width = "94%";
+      document.body.style.height = "90%";
+      document.body.style.margin = "5% 1% 5% 5%"
+      div.style.setProperty("-webkit-transform", "rotate(-90deg) translate(-"+(gh*0.925).toString()+"px,-"+(gw*0.025).toString()+"px)", null);
+      div.style.setProperty("-webkit-transform-origin", "0px 0px", null);
+      gw = document.body.clientWidth;
+      gh = document.body.clientHeight;
+      div.style.width = gh.toString()+"px";
+      div.style.height = gw.toString()+"px";
+      gw = document.body.clientHeight;
+      gh = document.body.clientWidth;
+    } else {
+      document.body.style.width = "90%";
+      document.body.style.height = "94%";
+      document.body.style.margin = "5% 5% 1% 5%"
+      div.style.setProperty("-webkit-transform", "rotate(-0deg)", null);
+      gw = document.body.clientWidth;
+      gh = document.body.clientHeight;
+      div.style.width = gw.toString()+"px";
+      div.style.height = gh.toString()+"px";
+    }
+
+    
+
     var sz = Math.min(gw/2.0,gh/3.0);
 
     var y_os = 0; //(gh/3.0-sz)*0.5;
