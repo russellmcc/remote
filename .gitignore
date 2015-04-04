@@ -1,0 +1,4 @@
+web/bower_components
+web/node_modules
+/web/bundle.js
+/web/npm-debug.log
