@@ -4,6 +4,21 @@ var Snap = require('snapsvg');
 var tinycolor = require('tinycolor2');
 var Vec2 = require('vec2');
 
+
+var hueOff = function() {
+  xhr({url: 'http://10.0.1.12/api/newdeveloper/lights/3'})
+      .then(JSON.parse.bind(JSON))
+      .then(function(resp){
+        xhr({
+          verb: 'PUT',
+          url: 'http://10.0.1.12/api/newdeveloper/lights/3/state',
+          data: JSON.stringify({
+            on: false
+          })
+        });
+      });
+};
+
 // red and green
 //var global_fill = "#FB0036";
 //var background = "#ABC403";
@@ -12,7 +27,7 @@ var Vec2 = require('vec2');
 //var global_fill = "#E5FA99";
 //var background = "#07393C";
 
-// dusty purple and neon yelloe green
+// dusty purple and neon yellow green
 var global_fill = "#E6F14A";
 var background = "#634B66";
 
@@ -129,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_tv.click( function() {
     sendRemoteCommand("tv");
+    hueOff();
     addHueIn(s_tv);
   });
 
@@ -181,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_xbox.click(function() {
     sendRemoteCommand("xbox");
+    hueOff();
     addHueIn(s_xbox);
   });
 
@@ -207,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_apple.click(function() {
     sendRemoteCommand("appletv");
+    hueOff();
     addHueIn(s_apple);
   });
 

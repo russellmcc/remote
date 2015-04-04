@@ -21025,6 +21025,21 @@ var Snap = require('snapsvg');
 var tinycolor = require('tinycolor2');
 var Vec2 = require('vec2');
 
+
+var hueOff = function() {
+  xhr({url: 'http://10.0.1.12/api/newdeveloper/lights/3'})
+      .then(JSON.parse.bind(JSON))
+      .then(function(resp){
+        xhr({
+          verb: 'PUT',
+          url: 'http://10.0.1.12/api/newdeveloper/lights/3/state',
+          data: JSON.stringify({
+            on: false
+          })
+        });
+      });
+};
+
 // red and green
 //var global_fill = "#FB0036";
 //var background = "#ABC403";
@@ -21033,7 +21048,7 @@ var Vec2 = require('vec2');
 //var global_fill = "#E5FA99";
 //var background = "#07393C";
 
-// dusty purple and neon yelloe green
+// dusty purple and neon yellow green
 var global_fill = "#E6F14A";
 var background = "#634B66";
 
@@ -21046,14 +21061,14 @@ function addBlurIn(s) {
   var f = s.filter(Snap.filter.blur(0,0));
   s.attr({ filter: f });
   var end_func = function() { addBlurOut(s); };
-  Snap.animate( 0, 10, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 300, mina.linear, end_func); 
-};
+  Snap.animate( 0, 10, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 300, mina.linear, end_func);
+}
 
 function addBlurOut(s) {
   var f = s.filter(Snap.filter.blur(10,10));
   s.attr({ filter: f });
   Snap.animate( 10, 0, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 500 ,mina.easein); 
-};
+}
 
 
 /*function addHueIn(s) {
@@ -21076,13 +21091,13 @@ function addHueIn(s) {
   var end_func = function() { addHueOut(s); };
   Snap.animate( 0.0, 1.0, function( value ) { 
     tweenColor(s,value,tc_global_fill,tc_background); }, 500, mina.easein, end_func);
-};
+}
 
 
 function addHueOut(s) {
   Snap.animate( 1.0, 0.0, function( value ) { 
     tweenColor(s,value,tc_global_fill,tc_background); }, 500 ,mina.easeout); 
-};
+}
 
 
 function tweenColor(s,at,st,g) {
@@ -21105,7 +21120,7 @@ function tweenColor(s,at,st,g) {
   var calced = tinycolor(c_hsv);
 
   s.selectAll("path").attr({fill: calced.toHexString() });
-};
+}
 
 
 function addSatIn(s) {
@@ -21113,14 +21128,14 @@ function addSatIn(s) {
   Snap.animate( 0.0, 1.0, function( value ) { 
     var sf = s.filter(Snap.filter.grayscale(value));
     s.attr({ filter: sf }); }, 300, mina.linear, end_func); 
-};
+}
 
 
 function addSatOut(s) {
   Snap.animate( 1.0, 0.0, function( value ) { 
     var sf = s.filter(Snap.filter.grayscale(value));
     s.attr({ filter: sf }); }, 500 ,mina.easein); 
-};
+}
 
 
 var sendRemoteCommand = function(c) {
@@ -21136,8 +21151,6 @@ var sendRemoteCommand = function(c) {
 };
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  console.log("loading and coloring svgs");
-
   var s = Snap("#svg_holder");
 
   var s_tv = Snap();
@@ -21152,6 +21165,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_tv.click( function() {
     sendRemoteCommand("tv");
+    hueOff();
     addHueIn(s_tv);
   });
 
@@ -21204,6 +21218,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_xbox.click(function() {
     sendRemoteCommand("xbox");
+    hueOff();
     addHueIn(s_xbox);
   });
 
@@ -21230,6 +21245,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_apple.click(function() {
     sendRemoteCommand("appletv");
+    hueOff();
     addHueIn(s_apple);
   });
 
@@ -21260,7 +21276,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   var layout_svgs = function() {
-    console.log("laying out svgs");
     //var gw = window.innerWidth;
     //var gh = window.innerHeight;
 
