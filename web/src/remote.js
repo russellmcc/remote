@@ -25,14 +25,14 @@ function addBlurIn(s) {
   var f = s.filter(Snap.filter.blur(0,0));
   s.attr({ filter: f });
   var end_func = function() { addBlurOut(s); };
-  Snap.animate( 0, 10, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 300, mina.linear, end_func); 
-};
+  Snap.animate( 0, 10, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 300, mina.linear, end_func);
+}
 
 function addBlurOut(s) {
   var f = s.filter(Snap.filter.blur(10,10));
   s.attr({ filter: f });
   Snap.animate( 10, 0, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 500 ,mina.easein); 
-};
+}
 
 
 /*function addHueIn(s) {
@@ -55,13 +55,13 @@ function addHueIn(s) {
   var end_func = function() { addHueOut(s); };
   Snap.animate( 0.0, 1.0, function( value ) { 
     tweenColor(s,value,tc_global_fill,tc_background); }, 500, mina.easein, end_func);
-};
+}
 
 
 function addHueOut(s) {
   Snap.animate( 1.0, 0.0, function( value ) { 
     tweenColor(s,value,tc_global_fill,tc_background); }, 500 ,mina.easeout); 
-};
+}
 
 
 function tweenColor(s,at,st,g) {
@@ -84,7 +84,7 @@ function tweenColor(s,at,st,g) {
   var calced = tinycolor(c_hsv);
 
   s.selectAll("path").attr({fill: calced.toHexString() });
-};
+}
 
 
 function addSatIn(s) {
@@ -92,14 +92,14 @@ function addSatIn(s) {
   Snap.animate( 0.0, 1.0, function( value ) { 
     var sf = s.filter(Snap.filter.grayscale(value));
     s.attr({ filter: sf }); }, 300, mina.linear, end_func); 
-};
+}
 
 
 function addSatOut(s) {
   Snap.animate( 1.0, 0.0, function( value ) { 
     var sf = s.filter(Snap.filter.grayscale(value));
     s.attr({ filter: sf }); }, 500 ,mina.easein); 
-};
+}
 
 
 var sendRemoteCommand = function(c) {
@@ -115,8 +115,6 @@ var sendRemoteCommand = function(c) {
 };
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  console.log("loading and coloring svgs");
-
   var s = Snap("#svg_holder");
 
   var s_tv = Snap();
@@ -239,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   var layout_svgs = function() {
-    console.log("laying out svgs");
     //var gw = window.innerWidth;
     //var gh = window.innerHeight;
 
