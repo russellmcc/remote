@@ -49,6 +49,93 @@ function addBlurOut(s) {
   Snap.animate( 10, 0, function( value ) { f.node.firstChild.attributes[0].value = value + ',' + value;  }, 500 ,mina.easein); 
 }
 
+var access_token = window.localStorage.getItem("access_token");
+var sparkcore = window.localStorage.getItem("sparkcore");
+
+var testAuth = function() {
+  return xhr({
+    url: "https://api.spark.io/v1/devices/" + sparkcore + "/ir",
+    verb: "POST",
+    urlencoded: true,
+    data: {
+      access_token: access_token,
+    }
+  });
+};
+
+var show_login = function(message){
+  var loginBG = document.createElement("div");
+  loginBG.classList.add("login-bg");
+  document.body.appendChild(loginBG);
+
+  var errorMsg = document.createElement("div");
+  errorMsg.classList.add("error-msg");
+  if (!message) {
+    message = "No valid access token.";
+  }
+  errorMsg.textContent = message;
+  loginBG.appendChild(errorMsg);
+
+  var addInput = function(id, labelText, value) {
+    var div = document.createElement("div");
+    loginBG.appendChild(div);
+    var label = document.createElement("label");
+    label.textContent = labelText;
+    label.htmlFor = id;
+    div.appendChild(label);
+    var input = document.createElement("input");
+    if (value) {
+      input.value = value;
+    }
+    input.id = id;
+    div.appendChild(input);
+    return input;
+  };
+
+  var sparkcoreInput = addInput("sparkcore", "sparkcore id", sparkcore);
+  var usernameInput = addInput("username", "username");
+  var passwordInput = addInput("password", "password");
+
+  var okButton = document.createElement("button");
+  okButton.textContent = "Request Access Token";
+  okButton.addEventListener("click", function(){
+    xhr({
+      url: "https://api.spark.io/oauth/token",
+      username: "spark",
+      password: "spark",
+      verb: "POST",
+      urlencoded: true,
+      data: {
+        grant_type: "password",
+        username: usernameInput.value,
+        password: passwordInput.value
+      }
+    }).then(function(resp) {
+      access_token = JSON.parse(resp).access_token;
+      sparkcore = sparkcoreInput.value;
+      return testAuth();
+    }).then(function(resp) {
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("sparkcore", sparkcore);
+      document.body.removeChild(loginBG);
+    }).catch(function(err) {
+      var resp = JSON.parse(err.response);
+      var msg = resp.error_description || resp.error + ":" + resp.info;
+      errorMsg.textContent = msg;
+    });
+  });
+  loginBG.appendChild(okButton);
+};
+
+window.addEventListener('load', function(){
+  if (!access_token || !sparkcore) {
+    show_login();
+  } else {
+    testAuth().then(function(){}, function(err){
+      show_login();
+    });
+  }
+});
 
 /*function addHueIn(s) {
   var end_func = function() { addHueOut(s); };
@@ -119,11 +206,11 @@ function addSatOut(s) {
 
 var sendRemoteCommand = function(c) {
   xhr({
-    url: "https://api.spark.io/v1/devices/ourguy/ir",
+    url: "https://api.spark.io/v1/devices/" + sparkcore + "/ir",
     verb: "POST",
     urlencoded: true,
     data: {
-      access_token: "9dd538b5c2002da10c39fc17cb3523ae5db3e852",
+      access_token: access_token,
       params: c
     }
   });

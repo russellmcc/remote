@@ -14,3 +14,36 @@ body {
 	width:100%;
 	height:100%;
 }
+
+.login-bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    font-family: futura;
+    text-align: center;
+}
+
+.login-bg div.error-msg {
+    color: red;
+    text-align: left;
+}
+
+.login-bg div {
+    margin: auto;
+    text-align: center;
+    width: 400px;
+}
+
+.login-bg label {
+    text-align: left;
+    color: white;
+    display: inline-block;
+    width: 100px;
+}
+
+.login-bg input {
+    width: 250px;
+}

@@ -8,7 +8,10 @@ module.exports = function(options) {
 
   return new Promise(function(resolve, reject) {
     var req = new XMLHttpRequest();
-    req.open(options.verb, options.url);
+    req.open(options.verb, options.url, true);
+    if (options.username && options.password) {
+      req.setRequestHeader("Authorization", "Basic " + btoa(options.username + ":" + options.password));
+    }
 
     req.onload = function() {
       var isSuccess = function (status) {
@@ -18,7 +21,9 @@ module.exports = function(options) {
         resolve(req.response);
       }
       else {
-        reject(new Error(req.statusText));
+        var err = new Error(req.statusText);
+        err.response = req.response;
+        reject(err);
       }
     };
 
