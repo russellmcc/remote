@@ -27,12 +27,26 @@ module.exports = function(options) {
     };
 
     if (options.data && typeof options.data === 'object') {
-      var data;
-      data = new FormData();
-      for (var key in options.data) {
-        data.append(key, options.data[key]);
+      if (options.urlencoded) {
+        // If the user requested, use url encoding
+        var dataStrings = [];
+        for (var key in options.data) {
+          var value = options.data[key];
+          dataStrings.push(window.encodeURIComponent(key) +
+                           "=" +
+                           window.encodeURIComponent(value));
+        }
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        req.send(dataStrings.join('&'));
+      } else {
+        // By default, use multipart
+        var data;
+        data = new FormData();
+        for (var key in options.data) {
+          data.append(key, options.data[key]);
+        }
+        req.send(data);
       }
-      req.send(data);
     } else if (typeof options.data === 'string') {
       req.send(options.data);
     } else {
