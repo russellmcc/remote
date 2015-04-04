@@ -21243,7 +21243,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_tv = Snap();
   s.append(s_tv);
   s_tv.attr({width:"50%", height:"16.666%"});
-  Snap.load("/icon_svgs/tv.svg", function (f) {
+  Snap.load("icon_svgs/tv.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill, width: "50%"});
     s_tv.append(f);
     s_tv.height = "16.6666%";
@@ -21259,7 +21259,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_upbutt = Snap();
   s_upbutt.attr({width:"25%", height:"16.666%"});
   s.append(s_upbutt);
-  Snap.load("/icon_svgs/ch+.svg", function (f) {
+  Snap.load("icon_svgs/ch+.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill});
     s_upbutt.append(f);
   });
@@ -21272,7 +21272,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_downbutt = Snap();
   s_downbutt.attr({width:"25%", height:"16.666%"});
   s.append(s_downbutt);
-  Snap.load("/icon_svgs/ch-.svg", function (f) {
+  Snap.load("icon_svgs/ch-.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill});
     s_downbutt.append(f);
   });
@@ -21285,7 +21285,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_power = Snap();
   s_power.attr({width:"25%", height:"16.666%"});
   s.append(s_power);
-  Snap.load("/icon_svgs/power.svg", function (f) {
+  Snap.load("icon_svgs/power.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill});
     s_power.append(f);
   });
@@ -21298,7 +21298,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_xbox = Snap();
   s_xbox.attr({width:"50%", height:"33.333%"});
   s.append(s_xbox);
-  Snap.load("/icon_svgs/xbox.svg", function (f) {
+  Snap.load("icon_svgs/xbox.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill});
     s_xbox.append(f);
   });
@@ -21312,7 +21312,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_turn = Snap();
   s_turn.attr({width:"50%", height:"33.333%"});
   s.append(s_turn);
-  Snap.load("/icon_svgs/turntable.svg", function (f) {
+  Snap.load("icon_svgs/turntable.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill});
     s_turn.append(f);
   });
@@ -21325,7 +21325,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_apple = Snap();
   s_apple.attr({width:"50%", height:"33.333%"});
   s.append(s_apple);
-  Snap.load("/icon_svgs/appletv.svg", function (f) {
+  Snap.load("icon_svgs/appletv.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill});
     s_apple.append(f);
   });
@@ -21339,7 +21339,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_volup = Snap();
   s_volup.attr({width:"25%", height:"16.666%"});
   s.append(s_volup);
-  Snap.load("/icon_svgs/vol+.svg", function (f) {
+  Snap.load("icon_svgs/vol+.svg", function (f) {
     f.select("path").attr({fill:global_fill});
     s_volup.append(f);
   });
@@ -21352,7 +21352,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_voldown = Snap();
   s_voldown.attr({width:"25%", height:"16.666%"});
   s.append(s_voldown);
-  Snap.load("/icon_svgs/vol-.svg", function (f) {
+  Snap.load("icon_svgs/vol-.svg", function (f) {
     f.select("path").attr({fill:global_fill});
     s_voldown.append(f);
   });
