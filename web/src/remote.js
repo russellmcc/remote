@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var s_tv = Snap();
   s.append(s_tv);
   s_tv.attr({width:"50%", height:"16.666%"});
-  Snap.load("icon_svgs/tv.svg", function (f) {
+  Snap.load("icon_svgs/TV.svg", function (f) {
     f.selectAll("path").attr({fill:global_fill, width: "50%"});
     s_tv.append(f);
     s_tv.height = "16.6666%";
