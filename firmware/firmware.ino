@@ -605,6 +605,77 @@ static const MessageInfo irMessages[] = {
 		{"source_select", source_select}
 };
 
+const initializer_list<String> sources = {
+	"tv",
+	"nothing",
+	"nothing",
+	"xbox",
+	"appletv",
+	"nothing",
+	"nothing",
+	"nothing"
+};
+
+auto currentSource = 0;
+String wantedSource = "tv";
+bool currentPowerState = false;
+
+bool sendCode(const String&);
+
+void setSource(const String& key) {
+	wantedSource = key;
+
+	auto goalSource = std::find(sources.begin(), sources.end(), key) - sources.begin();
+
+	if (!currentPowerState)
+		return;
+
+	if (goalSource == sources.size())
+		return;
+
+	if (goalSource == currentSource)
+		return;
+
+	delay(1000);
+	sendCode("source");
+	delay(1000);
+
+	while (currentSource < goalSource) {
+		currentSource++;
+		sendCode("source_down");
+		delay(1000);
+	}
+
+	while (currentSource > goalSource) {
+		currentSource--;
+		sendCode("source_up");
+		delay(1000);
+	}
+
+	delay(1000);
+
+	sendCode("source_select");
+
+	delay(250);
+}
+
+void setTVPowerState(bool state) {
+	if (currentPowerState == state)
+		return;
+
+	delay(1000);
+	sendCode("tv_power");
+	currentPowerState = state;
+
+	// warm-up time
+	if (state) {
+		delay(60000);
+		setSource(wantedSource);
+	}
+
+	delay(250);
+}
+
 // This routine runs only once upon reset
 void setup()
 {
@@ -668,7 +739,7 @@ void delayABunchOfMicros(uint32_t micros) {
 
 static const int numMessages = sizeof(irMessages) / sizeof(decltype(irMessages[0]));
 
-bool sendCode(String command) {
+bool sendCode(const String& command) {
 	auto messagePointer = std::find_if(irMessages, irMessages + numMessages,
 		[&](const MessageInfo& info) {
 			return info.name == command;
@@ -700,5 +771,24 @@ void loop()
 
 int irControl(String command)
 {
-  return sendCode(command) ? 1 : 0;
+	if (command == "xbox") {
+		sendCode("xbox_audio");
+		setTVPowerState(true);
+		setSource("xbox");
+	} else if (command == "tv") {
+		sendCode("tv_audio");
+		setTVPowerState(true);
+		setSource("tv");
+	} else if (command == "appletv") {
+		sendCode("appletv_audio");
+		sendCode("appletv_menu");
+		setSource("appletv");
+	} else if (command == "turntable") {
+		sendCode("turntable_audio");
+	} else if (command == "tv_power") {
+		setTVPowerState(!currentPowerState);
+	} else {
+  	return sendCode(command) ? 1 : 0;
+	}
+	return true;
 }
