@@ -26,29 +26,54 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: black;
+    background-color: #E6F14A;
     font-family: futura;
+    font-size: xx-large;
     text-align: center;
+    width: 80%;
+    opacity: 0.75;
+    padding: 10% 10% 10% 10%;
 }
 
 .login-bg div.error-msg {
-    color: red;
+    color: #DF4BF2;
     text-align: left;
 }
 
 .login-bg div {
     margin: auto;
-    text-align: center;
-    width: 400px;
+    text-align: left;
+    width: 100%;
 }
 
 .login-bg label {
-    text-align: left;
-    color: white;
+    text-align: right;
+    color: #503953;
     display: inline-block;
-    width: 100px;
+    width: 30%;
+    padding: 10px;
 }
 
 .login-bg input {
-    width: 250px;
+    width: 60%;
+    font-size: xx-large;
+    background-color: #503953;
+    color: #E6F14A;
+    border: 0px solid;
+}
+
+.login-bg button {
+    font-size: xx-large;
+    background-color: #503953;
+    color: #E6F14A;
+    width: 100%;
+    float: left;
+    border: 0px solid;
+    padding: 10px;
+    margin: 5% 0% 5% 0%;
+}
+
+.login-bg *:focus {
+	border: 0px solid;
+	background-color: #DF4BF2;
 }
