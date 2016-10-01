@@ -100,7 +100,7 @@ var show_login = function(message){
   okButton.textContent = "Request Access Token";
   okButton.addEventListener("click", function(){
     xhr({
-      url: "https://api.spark.io/oauth/token",
+      url: "https://api.particle.io/oauth/token",
       username: "spark",
       password: "spark",
       verb: "POST",
