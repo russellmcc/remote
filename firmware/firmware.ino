@@ -780,8 +780,9 @@ int irControl(String command)
 		setTVPowerState(true);
 		setSource("tv");
 	} else if (command == "appletv") {
-		sendCode("appletv_audio");
+		sendCode("tv_audio");
 		sendCode("appletv_menu");
+		setTVPowerState(true);
 		setSource("appletv");
 	} else if (command == "turntable") {
 		sendCode("turntable_audio");
