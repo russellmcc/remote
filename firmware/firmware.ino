@@ -787,7 +787,7 @@ int irControl(String command)
 	} else if (command == "turntable") {
 		sendCode("turntable_audio");
 	} else if (command == "tv_power") {
-		setTVPowerState(!currentPowerState);
+		setTVPowerState(false);
 	} else {
   	return sendCode(command) ? 1 : 0;
 	}
