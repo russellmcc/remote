@@ -21980,6 +21980,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   s_sound.click(function() {
     sendRemoteCommand("appletv_audio");
+    addHueIn(s_sound);
   });
 
   var s_volup = Snap();
