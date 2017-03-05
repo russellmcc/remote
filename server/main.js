@@ -44,6 +44,18 @@ const modes = {
   apple_music: () => {
     receiver.setMode('apple');
     apple.on();
+  },
+  chup: () => {
+    tv.channelUp();
+  },
+  chdown: () => {
+    tv.channelDown();
+  },
+  volup: () => {
+    receiver.volumeUp();
+  },
+  voldown: () => {
+    receiver.volumeDown();
   }
 };
 
