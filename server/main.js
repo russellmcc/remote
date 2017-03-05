@@ -1,42 +1,49 @@
-const ourtv = require('./ourtv');
-const ourreceiver = require('./ourreceiver');
-const ourapple = require('./ourapple');
+const tv = require('./tv');
+const receiver = require('./receiver');
+const apple = require('./apple');
+const hue = require('./hue');
 
 const modes = {
   off: () => {
-    ourtv.run('off');
+    tv.setMode('off');
   },
   ps4: () => {
-    ourtv.run('ps4');
-    ourreceiver.run('tv');
+    tv.setMode('ps4');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
   },
   apple: () => {
-    ourtv.run('apple');
-    ourreceiver.run('tv');
-    ourapple.run('on');
+    tv.setMode('apple');
+    receiver.setMode('tv');
+    apple.on();
+    hue.turnOffArtichoke();
   },
   antenna: () => {
-    ourtv.run('antenna');
-    ourreceiver.run('tv');
+    tv.setMode('antenna');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
   },
   vudu: () => {
-    ourtv.run('vudu');
-    ourreceiver.run('tv');
+    tv.setMode('vudu');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
   },
   amazon: () => {
-    ourtv.run('amazon');
-    ourreceiver.run('tv');
+    tv.setMode('amazon');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
   },
   netflix: () => {
-    ourtv.run('netflix');
-    ourreceiver.run('tv');
+    tv.setMode('netflix');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
   },
   turntable: () => {
-    ourreceiver.run('turntable');
+    receiver.setMode('turntable');
   },
   apple_music: () => {
-    ourreceiver.run('apple');
-    ourapple.run('on');
+    receiver.setMode('apple');
+    apple.on();
   }
 };
 
@@ -59,10 +66,10 @@ app.put('/state', (req, res) => {
 
 const channels = {
   'up': () => {
-    ourtv.run('channelUp');
+    tv.channelUp();
   },
   'down': () => {
-    ourtv.run('channelDown');
+    tv.channelDown();
   }
 };
 
@@ -76,10 +83,10 @@ app.put('/channel', (req, res) => {
 
 const volumes = {
   'up': () => {
-    ourreceiver.run('volumeUp');
+    receiver.volumeUp();
   },
   'down': () => {
-    ourreceiver.run('volumeDown');
+    receiver.volumeDown();
   }
 };
 

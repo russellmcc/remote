@@ -12,9 +12,12 @@
     "body-parser": "^1.17.0",
     "cors": "^2.8.1",
     "express": "^4.15.0",
+    "lodash": "^4.17.4",
     "node-arp": "^1.0.5",
+    "serialport": "^4.0.7",
     "wake_on_lan": "0.0.4",
     "ws": "^2.2.0",
-    "wtfnode": "^0.4.0"
+    "wtfnode": "^0.4.0",
+    "xmlhttprequest": "^1.8.0"
   }
 }

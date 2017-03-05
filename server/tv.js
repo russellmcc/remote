@@ -160,6 +160,12 @@ const run = (command) => {
   }
 };
 
-module.exports.run = run;
+module.exports.setMode = run;
 
-run('apple');
+module.exports.channelUp = () => {
+  run('channelUp');
+};
+
+module.exports.channelDown = () => {
+  run('channelDown');
+};
