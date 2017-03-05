@@ -2,11 +2,11 @@ const serial = require("./serial.js");
 
 module.exports.setMode = (mode) => {
   if (mode == 'tv') {
-    serial.send('tv');
+    serial.send('xbox_audio');
   } else if (mode == 'turntable') {
-    serial.send('turntable');
-  } else if (mode == 'appletv') {
-    serial.send('appletv');
+    serial.send('turntable_audio');
+  } else if (mode == 'apple') {
+    serial.send('appletv_audio');
   }
 };
 
