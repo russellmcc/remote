@@ -1,0 +1,17 @@
+{
+  "name": "remote-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-arp": "^1.0.5",
+    "wake_on_lan": "0.0.4",
+    "ws": "^2.2.0",
+    "wtfnode": "^0.4.0"
+  }
+}
