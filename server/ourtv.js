@@ -130,6 +130,9 @@ commands.amazon = createAppCommand('amazon.html');
 commands.vudu = createAppCommand('vudu');
 commands.netflix = createAppCommand('netflix');
 
+commands.channelUp = createRemoteCommand('ssap://tv/channelUp');
+commands.channelDown = createRemoteCommand('ssap://tv/channelDown');
+
 commands.antenna = () => {
   return whileConnected((sock) => {
     return lg.command(sock, 'ssap://tv/getChannelList') .then((channels) => {
@@ -158,3 +161,5 @@ const run = (command) => {
 };
 
 module.exports.run = run;
+
+run('apple');
