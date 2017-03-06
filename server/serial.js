@@ -23,7 +23,7 @@ const pumpQueue = () => {
 };
 
 timeOut = () => {
-  console.warning("timed out waiting for echo.");
+  console.warn("timed out waiting for echo.");
   if (writeQueue.length > 0) {
     pumpQueue();
   }
@@ -43,8 +43,8 @@ function receivedSerialData(data) {
   console.log("Received serial data: " + data);
   clearTimeout(timeoutHandle);
 
-  if (data !== writeQueue[0]) {
-    console.warning("potential issue, unexpected echo");
+  if (data.trim() !== writeQueue[0].trim()) {
+    console.warn("potential issue, unexpected echo", data.trim(), writeQueue[0].trim());
     pumpQueue();
     return;
   }
