@@ -36,7 +36,7 @@ function showError(error) {
 
 function sendToSerial(data) {
   console.log("sending to serial: " + data);
-  myPort.write(data + "\n");
+  myPort.write(data);
 }
 
 var setup = function() {
