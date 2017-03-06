@@ -9,12 +9,23 @@ var myPort = null;
 var setup_done = false;
 let opened = false;
 
-var writeQueue = [];
+let writeQueue = [];
+let timeoutHandle;
+
+let timeOut;
 
 const pumpQueue = () => {
   if (opened && writeQueue.length > 0) {
     console.log("sending to serial: " + writeQueue[0]);
     myPort.write(writeQueue[0]);
+    timeoutHandle = setTimeout(timeOut, 4000);
+  }
+};
+
+timeOut = () => {
+  console.warning("timed out waiting for echo.");
+  if (writeQueue.length > 0) {
+    pumpQueue();
   }
 };
 
@@ -23,15 +34,19 @@ const pumpQueue = () => {
 function showPortOpen() {
   opened = true;
   console.log('port open. Data rate: ' + myPort.options.baudRate);
-  pumpQueue();
+  // Let the arduino boot.
+  setTimeout(pumpQueue, 3000);
 }
 
 // this is called when new data comes into the serial port:
 function receivedSerialData(data) {
   console.log("Received serial data: " + data);
+  clearTimeout(timeoutHandle);
 
   if (data !== writeQueue[0]) {
     console.warning("potential issue, unexpected echo");
+    pumpQueue();
+    return;
   }
 
   writeQueue.shift();
