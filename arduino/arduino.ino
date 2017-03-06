@@ -698,7 +698,8 @@ int IRledPin =  13;    // LED connected to digital pin 13
  
 void setup()   {                
   // initialize the IR digital pin as an output:
-  pinMode(IRledPin, OUTPUT);      
+  pinMode(IRledPin, OUTPUT);    
+
  
  
   delay(1000);
