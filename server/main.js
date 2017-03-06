@@ -44,17 +44,32 @@ const modes = {
   apple_music: () => {
     receiver.setMode('apple');
     apple.on();
+  },
+  chup: () => {
+    tv.channelUp();
+  },
+  chdown: () => {
+    tv.channelDown();
+  },
+  volup: () => {
+    receiver.volumeUp();
+  },
+  voldown: () => {
+    receiver.volumeDown();
   }
 };
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const express = require('express');
+const multer  = require('multer')();
+
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.options('*', cors());
+app.use(bodyParser.json());
+app.use(multer.fields());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.put('/state', (req, res) => {
   if (!(req.body.mode && modes[req.body.mode])) {
