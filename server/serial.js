@@ -8,9 +8,14 @@ var exports = module.exports = {};
 var myPort = null;
 var setup_done = false;
 
+var toWrite = "";
+
 // ------------------------ Serial event functions:
 // this is called when the serial port is opened:
 function showPortOpen() {
+  if (toWrite) {
+    myPort.write(toWrite);
+  }
   console.log('port open. Data rate: ' + myPort.options.baudRate);
 }
 
@@ -65,6 +70,10 @@ var setup = function() {
 };
 
 exports.send = function(val) {
-	if (!setup_done) setup();
-	sendToSerial(val);
+	if (!setup_done) {
+      setup();
+      toWrite += val;
+    } else {
+	  sendToSerial(val);
+    }
 };
