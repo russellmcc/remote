@@ -4,11 +4,38 @@ padding: 0;
 margin: 0;
 }
 body {
-    background-color: #ABC403;
-    height: 94%;
-    width: 90%;
-    margin: 5% 5% 1% 5%;
+    background-color: #000000;
+    height: 100%;
+    width: 100%;
+    margin: 0;
     padding: 0;
+    font-family: Helvetica;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 4vh;
+    color: #000000;
+}
+.content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+div {
+    overflow: hidden;
+}
+
+@keyframes click {
+  0% {
+    color: #000000;
+  }
+  35% {
+    color: #ea0a8a;
+  }
+  100% {
+    color: #000000;
+  }
 }
 
 #svg_holder {
@@ -20,35 +47,118 @@ body {
 	width:100%;
 	height:100%;
 }
+
+.button {
+    cursor: pointer;
+    animation-duration: 0.75s;
+    animation-iteration-count: 1;
+}
+
+#off {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+
+}
+
+#apple {
+    width: 75%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    float: left;
+}
+
+#ps4 {
+    width: 75%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+    float: left;
+}
+
+#antenna {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+    float: left;
+}
+
+#chup {
+    width: 25%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    float: left;
+}
+
+#chdown {
+    width: 25%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.2);
+    float: left;
+}
+
+#netflix {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    float: left;
+}
+#amazon {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+    float: left;
+}
+#vudu {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    float: left;
+}
+
+#apple_music {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    float: left;
+}
+#turntable {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+    float: left;
+}
+#volup {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    float: left;
+}
+#voldown {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.2);
+    float: left;
+}
+
+.row {
+    width: 100%;
+    height: 9.09090909%;
+}
+.separator {
+    width: 100%;
+    height: 4.545454545%;
+}
 .login-bg {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: black;
+    background-color: #E6F14A;
     font-family: futura;
+    font-size: xx-large;
     text-align: center;
-}
-
-.login-bg div.error-msg {
-    color: red;
-    text-align: left;
-}
-
-.login-bg div {
-    margin: auto;
-    text-align: center;
-    width: 400px;
-}
-
-.login-bg label {
-    text-align: left;
-    color: white;
-    display: inline-block;
-    width: 100px;
-}
-
-.login-bg input {
-    width: 250px;
+    width: 80%;
+    opacity: 0.75;
+    padding: 10% 10% 10% 10%;
 }
