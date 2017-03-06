@@ -36,7 +36,7 @@ var setup = function() {
 	// from https://github.com/ITPNYU/physcomp/blob/master/labs2014/Node%20Serial%20Lab/wsServer.js
 	// configure the serial port:
 	var SerialPort = serialport.SerialPort,             // make a local instance of serialport
-	    portName = '/dev/cu.usbserial-A700dErh',    // get serial port name look in arudino ide
+	    portName = '/dev/ttyUSB0',    // get serial port name look in arudino ide
 	    delimiter = 'n';                			// serial parser to use, assuming newline
 	var serialOptions = {                           // serial communication options
 	      baudRate: 9600,                           // data rate: 9600 bits per second
