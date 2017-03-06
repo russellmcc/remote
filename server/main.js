@@ -67,10 +67,12 @@ const multer  = require('multer')();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(multer.fields());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.options('*', cors());
 
-app.put('/state', multer.fields(), (req, res) => {
+app.options('/state');
+app.put('/state', (req, res) => {
   if (!(req.body.mode && modes[req.body.mode])) {
     res.send(400, "request body contained invalid 'mode' field");
   }
@@ -87,7 +89,8 @@ const channels = {
   }
 };
 
-app.put('/channel', multer.fields(), (req, res) => {
+app.options('/channel');
+app.put('/channel', (req, res) => {
   if (!(req.body.direction && channels[req.body.direction])) {
     res.send(400, "request body contained invalid 'direction' field");
   }
@@ -104,7 +107,8 @@ const volumes = {
   }
 };
 
-app.put('/volume', multer.fields(), (req, res) => {
+app.options('/volume');
+app.put('/volume', (req, res) => {
   if (!(req.body.direction && volumes[req.body.direction])) {
     res.send(400, "request body contained invalid 'direction' field");
   }
