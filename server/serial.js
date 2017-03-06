@@ -7,20 +7,22 @@ var exports = module.exports = {};
 
 var myPort = null;
 var setup_done = false;
+let opened = false;
 
-var toWrite = "";
+var toWrite = [];
 
 // ------------------------ Serial event functions:
 // this is called when the serial port is opened:
 function showPortOpen() {
-  if (toWrite) {
-    myPort.write(toWrite);
-  }
+  opened = true;
   console.log('port open. Data rate: ' + myPort.options.baudRate);
+  for (const val of toWrite) {
+    sendToSerial(val);
+  }
 }
 
 // this is called when new data comes into the serial port:
-function sendSerialData(data) {
+function receivedSerialData(data) {
   console.log("Received serial data: " + data);
 }
 
@@ -34,7 +36,7 @@ function showError(error) {
 
 function sendToSerial(data) {
   console.log("sending to serial: " + data);
-  myPort.write(data);
+  myPort.write(data + "\n");
 }
 
 var setup = function() {
@@ -62,7 +64,7 @@ var setup = function() {
 
 	// set up event listeners for the serial events:
 	myPort.on('open', showPortOpen);
-	myPort.on('data', sendSerialData);
+	myPort.on('data', receivedSerialData);
 	myPort.on('close', showPortClose);
 	myPort.on('error', showError);
 
@@ -72,8 +74,10 @@ var setup = function() {
 exports.send = function(val) {
 	if (!setup_done) {
       setup();
-      toWrite += val;
-    } else {
+    }
+    if (opened) {
 	  sendToSerial(val);
+    } else {
+      toWrite.push(val);
     }
 };
