@@ -9,21 +9,33 @@ var myPort = null;
 var setup_done = false;
 let opened = false;
 
-var toWrite = [];
+var writeQueue = [];
+
+const pumpQueue = () => {
+  if (opened && writeQueue.length > 0) {
+    console.log("sending to serial: " + writeQueue[0]);
+    myPort.write(writeQueue[0]);
+  }
+};
 
 // ------------------------ Serial event functions:
 // this is called when the serial port is opened:
 function showPortOpen() {
   opened = true;
   console.log('port open. Data rate: ' + myPort.options.baudRate);
-  for (const val of toWrite) {
-    sendToSerial(val);
-  }
+  pumpQueue();
 }
 
 // this is called when new data comes into the serial port:
 function receivedSerialData(data) {
   console.log("Received serial data: " + data);
+
+  if (data !== writeQueue[0]) {
+    console.warning("potential issue, unexpected echo");
+  }
+
+  writeQueue.shift();
+  pumpQueue();
 }
 
 function showPortClose() {
@@ -35,8 +47,11 @@ function showError(error) {
 }
 
 function sendToSerial(data) {
-  console.log("sending to serial: " + data);
-  myPort.write(data);
+  console.log("Queuing to serial: " + data);
+  writeQueue.push(data);
+  if (writeQueue.length === 1) {
+    pumpQueue();
+  }
 }
 
 var setup = function() {
@@ -78,6 +93,6 @@ exports.send = function(val) {
     if (opened) {
 	  sendToSerial(val);
     } else {
-      toWrite.push(val);
+      writeQueue.push(val);
     }
 };
