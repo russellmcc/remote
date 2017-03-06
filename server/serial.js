@@ -43,6 +43,10 @@ function receivedSerialData(data) {
   console.log("Received serial data: " + data);
   clearTimeout(timeoutHandle);
 
+  if (data.startsWith('Code Sent -')) {
+    return;
+  }
+
   if (data.trim() !== writeQueue[0].trim()) {
     console.warn("potential issue, unexpected echo", data.trim(), writeQueue[0].trim());
     pumpQueue();
