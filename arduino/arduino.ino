@@ -17,7 +17,7 @@ for more tutorials!
 using namespace std;
 #include <avr/pgmspace.h>
 
-static const int channel_up[] PROGMEM = {
+static const uint16_t channel_up[] PROGMEM = {
 	876, 430,
 	58, 52,
 	58, 158,
@@ -57,7 +57,7 @@ static const int channel_up[] PROGMEM = {
 	876, 214,
 	58, 0 };
 
-static const int tv_power[] PROGMEM = {
+static const uint16_t tv_power[] PROGMEM = {
 874, 432,
 58, 50,
 58, 158,
@@ -101,7 +101,7 @@ static const int tv_power[] PROGMEM = {
 874, 214,
 58, 0};
 
-static const int channel_down[] PROGMEM = {
+static const uint16_t channel_down[] PROGMEM = {
 874, 432,
 58, 50,
 58, 158,
@@ -141,7 +141,7 @@ static const int channel_down[] PROGMEM = {
 876, 214,
 58, 0};
 
-static const int source[] PROGMEM = {
+static const uint16_t source[] PROGMEM = {
 	876, 430,
 	60, 52,
 	56, 162,
@@ -183,7 +183,7 @@ static const int source[] PROGMEM = {
 	874, 216,
 	58, 0};
 
-static const int source_up[] PROGMEM = {
+static const uint16_t source_up[] PROGMEM = {
 	876, 432,
 	58, 50,
 	60, 160,
@@ -223,7 +223,7 @@ static const int source_up[] PROGMEM = {
 	876, 214,
 	58, 0};
 
-static const int source_down[] PROGMEM = {
+static const uint16_t source_down[] PROGMEM = {
 	874, 432,
 	58, 52,
 	58, 158,
@@ -263,7 +263,7 @@ static const int source_down[] PROGMEM = {
 	876, 214,
 	58, 0};
 
-static const int xbox_audio[] PROGMEM = {
+static const uint16_t xbox_audio[] PROGMEM = {
 		868, 454,
 		58, 54,
 		58, 164,
@@ -305,7 +305,7 @@ static const int xbox_audio[] PROGMEM = {
 		868, 216,
 		58, 0};
 
-static const int turntable_audio[] PROGMEM = {
+static const uint16_t turntable_audio[] PROGMEM = {
 		866, 456,
 	58, 54,
 	56, 166,
@@ -347,7 +347,7 @@ static const int turntable_audio[] PROGMEM = {
 	868, 214,
 	60, 0};
 
-static const int appletv_audio[] PROGMEM = {
+static const uint16_t appletv_audio[] PROGMEM = {
 	868, 454,
 	58, 54,
 	58, 164,
@@ -389,7 +389,7 @@ static const int appletv_audio[] PROGMEM = {
 	870, 214,
 	58, 0};
 
-static const int tv_audio[] PROGMEM = {
+static const uint16_t tv_audio[] PROGMEM = {
 	868, 454,
 	64, 48,
 	58, 164,
@@ -429,7 +429,7 @@ static const int tv_audio[] PROGMEM = {
 	866, 216,
 	58, 0};
 
-static const int volume_up[] PROGMEM = {
+static const uint16_t volume_up[] PROGMEM = {
 	868, 454,
 	58, 52,
 	58, 166,
@@ -469,7 +469,7 @@ static const int volume_up[] PROGMEM = {
 	868, 214,
 	60, 0};
 
-static const int volume_down[] PROGMEM = {
+static const uint16_t volume_down[] PROGMEM = {
 		868, 456,
 	58, 52,
 	58, 166,
@@ -509,7 +509,7 @@ static const int volume_down[] PROGMEM = {
 	868, 214,
 	58, 0};
 
-static const int appletv_menu[] PROGMEM = {
+static const uint16_t appletv_menu[] PROGMEM = {
 	898, 434,
 	56, 54,
 	56, 162,
@@ -547,7 +547,7 @@ static const int appletv_menu[] PROGMEM = {
 	892, 218,
 	56, 0};
 
-static const int source_select[] PROGMEM = {
+static const uint16_t source_select[] PROGMEM = {
 	872, 432,
 	58, 50,
 	58, 162,
@@ -596,24 +596,24 @@ return N;
 struct MessageInfo {
 	String name;
         unsigned int length;
-	const int* message;
+	const uint16_t* message;
 };
 
-static const MessageInfo irMessages[] = {
+static const MessageInfo irMessages[] PROGMEM = {
 	{"channel_up", countof(channel_up), channel_up},
-	{"tv_power", countof(channel_up), tv_power},
-	{"channel_down", countof(channel_up), channel_down},
-    {"source", countof(channel_up), source},
-    {"source_up", countof(channel_up), source_up},
-    {"source_down", countof(channel_up), source_down},
-    {"xbox_audio", countof(channel_up), xbox_audio},
-    {"turntable_audio", countof(channel_up), turntable_audio},
-    {"appletv_audio", countof(channel_up), appletv_audio},
-    {"tv_audio", countof(channel_up), tv_audio},
-    {"volume_up", countof(channel_up), volume_up},
-    {"volume_down", countof(channel_up), volume_down},
-    {"appletv_menu", countof(channel_up), appletv_menu},
-		{"source_select", countof(channel_up), source_select}
+	{"tv_power", countof(tv_power), tv_power},
+	{"channel_down", countof(channel_down), channel_down},
+    {"source", countof(source), source},
+    {"source_up", countof(source_up), source_up},
+    {"source_down", countof(source_down), source_down},
+    {"xbox_audio", countof(xbox_audio), xbox_audio},
+    {"turntable_audio", countof(turntable_audio), turntable_audio},
+    {"appletv_audio", countof(appletv_audio), appletv_audio},
+    {"tv_audio", countof(tv_audio), tv_audio},
+    {"volume_up", countof(volume_up), volume_up},
+    {"volume_down", countof(volume_down), volume_down},
+    {"appletv_menu", countof(appletv_menu), appletv_menu},
+		{"source_select", countof(source_select), source_select}
 };
 
 static const String sources[] = {
@@ -719,12 +719,12 @@ void pulseIR(long microsecs) {
   while (microsecs > 0) {
     // 38 kHz is about 13 microseconds high and 13 microseconds low
    digitalWrite(IRledPin, HIGH);  // this takes about 3 microseconds to happen
-   delayMicroseconds(8);         // hang out for 10 microseconds, you can also change this to 9 if its not working
+   delayMicroseconds(10);         // hang out for 10 microseconds, you can also change this to 9 if its not working
    digitalWrite(IRledPin, LOW);   // this also takes about 3 microseconds
-   delayMicroseconds(8);         // hang out for 10 microseconds, you can also change this to 9 if its not working
+   delayMicroseconds(10);         // hang out for 10 microseconds, you can also change this to 9 if its not working
  
    // so 26 microseconds altogether
-   microsecs -= 27;
+   microsecs -= 26;
   }
 }
 
@@ -746,17 +746,15 @@ bool sendCode(const String& command) {
 
   cli();  // this turns off any background interrupts
 
-	auto& message = messagePointer->message;
+	const uint16_t* message = messagePointer->message;
   for (int i = 0; i < messagePointer->length; i += 2) {
     
-    pulseIR(*(message + i)*10*1.02);
+    pulseIR(pgm_read_word(message + i)*10*1.04);
      
-     float micro_secs = *(message + i+1)*9.5*1.06;
-     while (micro_secs> 1000000) {
-       sei();
-       delay(1000);
-       cli();
-       micro_secs -= 1000000;
+     float micro_secs = pgm_read_word(message + i + 1)*10*1.02;
+     while (micro_secs> 1000) {
+       delayMicroseconds(1000);
+       micro_secs -= 1000;
      }
      delayMicroseconds(micro_secs);
   }
@@ -764,6 +762,8 @@ bool sendCode(const String& command) {
   sei();  // this turns them back on
   
   Serial.println("Code Sent - " + command);
+  Serial.println("Code Sent - " + String(pgm_read_word(message)));
+
   return true;
 }
 
