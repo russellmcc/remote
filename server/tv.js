@@ -70,6 +70,13 @@ const scan = () => {
 };
 
 const whileConnected = (f) => {
+  // Two fundamental things can go wrong here... - we can be off and
+  // waiting for the TV to turn on, or we can have the wrong IP address.
+  // For maximum speed when the TV is on, we try immediately, and then
+  // start retrying while the TV boots. If we fail 3 times, we do a scan
+  // and finally give up.
+  let fails = 0;
+
   // We retry once after rescanning.
   let attemptedRescan = false;
   const tryIt = () => {
@@ -85,6 +92,12 @@ const whileConnected = (f) => {
       });
     }).catch(
       (err) => {
+        if (fails < 3 && lastKnownAddress) {
+          ++fails;
+          return wait(fails * 1000).then(() => {
+            return tryIt();
+          });
+        }
         if (attemptedRescan) {
           throw err;
         }
@@ -92,8 +105,8 @@ const whileConnected = (f) => {
         return scan().then(() => { return tryIt(); });
       });
   };
+
   return ensureOn()
-    .then(wait(1000))
     .then(tryIt);
 };
 
