@@ -1,0 +1,165 @@
+[
+	{
+		"name" : "Apple TV",
+		"action" : [
+			{
+				"time" : 0.0,
+				"type" : "hue",
+				"description" : "turn off the glare-y light",
+				"light_name" : "Normann",
+				"state_data" : "{\"on\":false}"
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "turn on the apple tv",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "turn on the tv",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "set reciever to apple tv",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 2.0,
+				"type" : "spark",
+				"description" : "input key on tv source",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 2.5,
+				"type" : "spark",
+				"description" : "choose hdmi2",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			}
+		]
+	},
+	{
+		"name" : "Xbox",
+		"action" : [
+			{
+				"time_os" : 0.0,
+				"type" : "hue",
+				"description" : "turn off the glare-y light",
+				"light_name" : "Normann",
+				"state_data" : "{\"on\":false}"
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "turn on the tv",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "set reciever to xbox",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 2.0,
+				"type" : "spark",
+				"description" : "input key on tv source",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 2.5,
+				"type" : "spark",
+				"description" : "choose hdmi1",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			}
+		]
+	},
+	{
+		"name" : "Watch TV",
+		"action" : [
+			{
+				"time_os" : 0.0,
+				"type" : "hue",
+				"description" : "turn off the glare-y light",
+				"light_name" : "Normann",
+				"state_data" : "{\"on\":false}"
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "turn on the tv",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "set reciever to tv",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 2.0,
+				"type" : "spark",
+				"description" : "input key on tv source",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			},
+			{
+				"time_os" : 2.5,
+				"type" : "spark",
+				"description" : "choose antenna",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			}
+		]
+	},
+	{
+		"name" : "Play Record",
+		"action" : [
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "set reciever to record player",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			}
+		]
+	},
+	{
+		"name" : "+ Volume",
+		"action" : [
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "increase volume",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			}
+		]
+	},
+	{
+		"name" : "- Volume",
+		"action" : [
+			{
+				"time_os" : 0.0,
+				"type" : "spark",
+				"description" : "decrease volume",
+				"ir_pattern" : "jnvitragearuhoieg"
+
+			}
+		]
+	}
+]
