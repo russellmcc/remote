@@ -135,6 +135,8 @@ const commands = {};
 
 commands.apple = createSwitchInputCommand('HDMI_2');
 commands.ps4 = createSwitchInputCommand('HDMI_1');
+commands.computer = createSwitchInputCommand('HDMI_4');
+commands.chromecast = createSwitchInputCommand('HDMI_3');
 commands.off = createRemoteCommand(
   'ssap://system/turnOff'
 );

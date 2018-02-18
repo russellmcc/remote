@@ -18,6 +18,16 @@ const modes = {
     apple.on();
     hue.turnOffArtichoke();
   },
+  computer: () => {
+    tv.setMode('computer');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
+  },
+  chromecast: () => {
+    tv.setMode('chromecast');
+    receiver.setMode('tv');
+    hue.turnOffArtichoke();
+  },
   antenna: () => {
     tv.setMode('antenna');
     receiver.setMode('tv');
