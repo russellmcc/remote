@@ -62,16 +62,30 @@ div {
 }
 
 #apple {
-    width: 75%;
+    width: 50%;
     height: 100%;
     background-color: rgba(255,255,255,0.8);
     float: left;
 }
 
 #ps4 {
-    width: 75%;
+    width: 50%;
     height: 100%;
     background-color: rgba(255,255,255,0.6);
+    float: left;
+}
+
+#computer {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    float: left;
+}
+
+#chromecast {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.2);
     float: left;
 }
 
