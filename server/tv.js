@@ -9,11 +9,15 @@ let wol = require('wake_on_lan');
 let lastKnownAddress = null;
 
 const ensureOn = () => {
+  console.log("ensuring TV is on")
   return new Promise((resolve, reject)  => {
+    console.log("running wol wake");
     wol.wake(tvMAC, (err) => {
       if (err) {
+        console.log("wol wake failed", err);
         reject(err);
       } else {
+        console.log("wol wake succeeded");
         resolve();
       }
     });
@@ -80,9 +84,13 @@ const whileConnected = (f) => {
   // We retry once after rescanning.
   let attemptedRescan = false;
   const tryIt = () => {
+    console.log("attempting to open TV socket");
     return lg.openSocket(lastKnownAddress).then((sock) => {
+      console.log("opened TV socket");
       return lg.handshake(sock, TV_KEY).then((sock) => {
+        console.log("handshake accepted; running command");
         return f(sock).then((retVal) => {
+          console.log("command succeeded; closing socket.");
           sock.close();
           return retVal;
         }, (err) => {
@@ -92,17 +100,18 @@ const whileConnected = (f) => {
       });
     }).catch(
       (err) => {
+        console.log("Failed to open socket - attempt " + fails);
         if (fails < 3 && lastKnownAddress) {
           ++fails;
           return wait(fails * 1000).then(() => {
-            return tryIt();
+            return ensureOn().then(tryIt);
           });
         }
         if (attemptedRescan) {
           throw err;
         }
         attemptedRescan = true;
-        return scan().then(() => { return tryIt(); });
+        return ensureOn().then(scan).then(() => { return tryIt(); });
       });
   };
 
@@ -113,6 +122,7 @@ const whileConnected = (f) => {
 
 const createRemoteCommand = (uri, payload) => {
   return () => {
+    console.log("Sending TV command: " + uri);
     return whileConnected((sock) => {
       return lg.command(sock, uri, payload);
     });
@@ -149,6 +159,7 @@ commands.channelUp = createRemoteCommand('ssap://tv/channelUp');
 commands.channelDown = createRemoteCommand('ssap://tv/channelDown');
 
 commands.antenna = () => {
+  console.log("starting antenna");
   return whileConnected((sock) => {
     return lg.command(sock, 'ssap://tv/getChannelList') .then((channels) => {
       return lg.command(
@@ -162,8 +173,11 @@ commands.antenna = () => {
 const queue = [];
 
 const run = (command) => {
+  console.log("adding " + command + " to TV command queue.")
   queue.push(() => {
+    console.log("running TV command " + command);
     commands[command]().then(() => {
+      console.log("finished TV command " + command);
       queue.shift();
       if (queue.length > 0) {
         return queue[0]();
