@@ -31,6 +31,7 @@ const wait = (time) => {
 };
 
 const scan = () => {
+  console.log("running scan!");
   // ensure TV is on
   return ensureOn().then(() => wait(6000)).then(() => {
     const scanner = new Scanner();
