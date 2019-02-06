@@ -182,6 +182,13 @@ const run = (command) => {
       if (queue.length > 0) {
         return queue[0]();
       }
+    }).catch((err) => {
+      console.warn("TV command ", command, " failed:");
+      console.warn(err);
+      queue.shift();
+      if (queue.length > 0) {
+        return queue[0]();
+      }
     });
   });
   if (queue.length == 1) {
