@@ -14,6 +14,7 @@ module.exports['openSocket'] = (address) => {
     };
     const timeout = setTimeout(() => {
       clearHandlers();
+      socket.close();
       reject_("timeout!");
     }, 5000);
     const reject = (err) => {
