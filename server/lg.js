@@ -2,8 +2,9 @@ const WebSocket = require('ws');
 const HANDSHAKE_TEMPLATE = require('./assets/hello.json');
 
 module.exports['openSocket'] = (address) => {
-  const socket = new WebSocket('ws://' + address + ':3000');
-  return new Promise((resolve_, reject_) => {
+  const socket = new WebSocket('ws://' + address + ':3000',
+                               {"handshakeTimeout": 5000});
+  return new Promise((resolve, reject) => {
     let onOpen;
     let onError;
     let onClose;
@@ -11,19 +12,6 @@ module.exports['openSocket'] = (address) => {
       socket.removeListener('error', onError);
       socket.removeListener('close', onClose);
       socket.removeListener('open', onOpen);
-    };
-    const timeout = setTimeout(() => {
-      clearHandlers();
-      socket.close();
-      reject_("timeout!");
-    }, 5000);
-    const reject = (err) => {
-      clearTimeout(timeout);
-      reject_(err);
-    };
-    const resolve = (socket) => {
-      clearTimeout(timeout);
-      resolve_(socket);
     };
 
     onError = (err) => {
