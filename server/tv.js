@@ -1,4 +1,5 @@
-const TV_KEY = "d9e419e59e62a9131baef06c70b4d3fb";
+// Get TV Key using https://github.com/ecs87/Simple-LG-TV-Websocket-HTML-interface
+const TV_KEY = "cd737b26ee1ccb6a524b7c5ba3cb3324";
 const tvMAC = '14:C9:13:B0:8A:CF';
 
 const lg = require('./lg');
