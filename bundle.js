@@ -10802,7 +10802,7 @@
 "use strict";
 var xhr = require('./xhr');
 
-var server_address = 'http://10.0.1.66:8888'
+var server_address = 'http://192.168.99.121:8888'
 
 var handleAction = function() {
 	console.log(this.id);
