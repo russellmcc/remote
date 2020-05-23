@@ -1,7 +1,7 @@
 "use strict";
 var xhr = require('./xhr');
 
-var server_address = 'http://192.168.99.121:8888'
+var server_address = 'http://192.168.1.171:8888';
 
 var handleAction = function() {
 	console.log(this.id);
