@@ -1,6 +1,6 @@
 // Get TV Key using https://github.com/ecs87/Simple-LG-TV-Websocket-HTML-interface
 const TV_KEY = "cd737b26ee1ccb6a524b7c5ba3cb3324";
-const tvMAC = '14:C9:13:B0:8A:CF';
+const tvMAC = 'a0:6f:aa:3b:36:7e';
 
 const lg = require('./lg');
 const Scanner = require('./scanner');
@@ -59,6 +59,7 @@ const scan = () => {
           if (timedOut) { return; }
           if (err) { reject(err); }
           if (tvMAC.toLowerCase() === deviceMac.toLowerCase()) {
+            console.log("found mac for TV: ", device.address, deviceMac);
             lastKnownAddress = device.address;
             resolve(device.address);
           }
