@@ -6,7 +6,7 @@ var exports = module.exports = {};
 
 
 // hue stuff
-var bridge_ip = "192.168.1.194";
+var bridge_ip = "10.0.0.10";
 var user_name = "3754f5d763aa2cd2c55d70f468e5e28";
 
 var getBridgeIP = function() {
